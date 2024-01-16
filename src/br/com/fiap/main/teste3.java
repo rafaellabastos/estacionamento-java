@@ -6,18 +6,16 @@ import br.com.fiap.bean.Carro;
 import br.com.fiap.dao.CarroDAO;
 import br.com.fiap.dao.Conexao;
 
-public class teste2 {
+public class teste3 {
 	public static void main(String[] args) {
 		Connection con = Conexao.abrirConexao();
 		
 		Carro cb = new Carro();
 		CarroDAO cd = new CarroDAO(con);
 		
-		//Teste do método alterar
+		//Teste do método excluir
 		cb.setPlaca("JKK1900");
-		cb.setCor("Amarelo");
-		cb.setDescricao("Carro 1");
-		System.out.println(cd.alterar(cb));
+		System.out.println(cd.excluir(cb));
 		
 		Conexao.fecharConexao(con);
 	}
