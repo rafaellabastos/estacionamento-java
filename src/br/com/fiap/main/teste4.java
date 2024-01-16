@@ -7,7 +7,7 @@ import br.com.fiap.bean.Carro;
 import br.com.fiap.dao.CarroDAO;
 import br.com.fiap.dao.Conexao;
 
-public class teste4 {
+public class Teste4 {
 	public static void main(String[] args) {
 		Connection con = Conexao.abrirConexao();
 		
