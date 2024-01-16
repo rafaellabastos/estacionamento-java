@@ -2,7 +2,9 @@ package br.com.fiap.dao;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 import br.com.fiap.bean.Carro;
 
@@ -64,7 +66,7 @@ public class CarroDAO {
 		String sql = "delete from carro where placa = ?";
 		
 		try {
-			PreparedStatement ps = getCon().prepareCall(sql);
+			PreparedStatement ps = getCon().prepareStatement(sql);
 			ps.setString(1, carro.getPlaca());
 			
 			if(ps.executeUpdate() > 0) {
@@ -75,6 +77,30 @@ public class CarroDAO {
 			
 		} catch (SQLException e) {
 			return e.getMessage();
+		}
+	}
+	
+	public ArrayList<Carro> listarTodos() {
+		String sql = "select * from carro ";
+		ArrayList<Carro> listaCarro = new ArrayList<Carro>();
+		try {
+			PreparedStatement ps = getCon().prepareStatement(sql);
+			ResultSet rs = ps.executeQuery();
+			
+			if(rs != null) {
+				while (rs.next()) {
+					Carro cb = new Carro();
+					cb.setPlaca(rs.getString(1));
+					cb.setCor(rs.getString(2));
+					cb.setDescricao(rs.getString(3));
+					listaCarro.add(cb);
+				}
+				return listaCarro;
+			} else {
+				return null;
+			}
+		} catch (SQLException e) {
+			return null;
 		}
 	}
 }
