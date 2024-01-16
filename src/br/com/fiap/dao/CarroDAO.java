@@ -60,5 +60,21 @@ public class CarroDAO {
 		}
 	}
 	
-
+	public String excluir(Carro carro) {
+		String sql = "delete from carro where placa = ?";
+		
+		try {
+			PreparedStatement ps = getCon().prepareCall(sql);
+			ps.setString(1, carro.getPlaca());
+			
+			if(ps.executeUpdate() > 0) {
+				return "Excluído com sucesso";
+			} else {
+				return "Erro ao alterar";
+			}
+			
+		} catch (SQLException e) {
+			return e.getMessage();
+		}
+	}
 }
