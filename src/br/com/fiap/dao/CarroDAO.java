@@ -8,11 +8,12 @@ import java.util.ArrayList;
 
 import br.com.fiap.bean.Carro;
 
-public class CarroDAO {
+public class CarroDAO implements IDAO {
 	private Connection con;
+	private Carro carro;
 
 	public CarroDAO(Connection con) {
-		this.con = con;
+		setCon(con);
 	}
 	
 	public Connection getCon() {
